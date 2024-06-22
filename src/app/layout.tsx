@@ -1,8 +1,69 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { GFS_Neohellenic, Karla, Spectral, Roboto } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import { cn } from "@/lib/utils";
+import localFont from "next/font/local";
+import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+
+
+const gfs = GFS_Neohellenic({
+  variable: "--font-gfs",
+  weight: ["400", "700"],
+  subsets: ['greek']
+});
+
+const karla = Karla({
+  variable: "--font-karla",
+  subsets: ['latin']
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500']
+
+});
+
+const spectral = Spectral({
+  variable: "--font-spectral",
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800',]
+});
+
+const dream = localFont({
+  src: [
+    {
+      path: "../assets/fonts/DreamAvenue.ttf",
+      style: "normal",
+    },
+  ],
+  variable: "--font-dream",
+  display: "block",
+});
+
+const inai = localFont({
+  src: [
+    {
+      path: "../assets/fonts/InaiMathiRegular.ttf",
+      style: "normal",
+    },
+  ],
+  variable: "--font-inai",
+  display: "block",
+});
+
+const times = localFont({
+  src: [
+    {
+      path: "../assets/fonts/TimesNewRomans.ttf",
+      style: "normal",
+    },
+  ],
+  variable: "--font-times",
+  display: "block",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +77,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(` 
+        ${karla.variable} 
+        ${gfs.variable} 
+        ${dream.variable} 
+        ${spectral.variable} 
+        ${inai.variable} 
+        ${times.variable}
+        ${roboto.variable}
+        `)}>
+        <div className="relative flex min-h-screen flex-col bg-background">
+          <Header />
+          {children}
+          <Footer />
+        </div>
+      </body>
     </html>
   );
 }
