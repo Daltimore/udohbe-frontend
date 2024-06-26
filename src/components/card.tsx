@@ -2,14 +2,15 @@ import Image from 'next/image'
 import React from 'react'
 import CandleCard from '../assets/images/candle-card.png'
 import Currency from './currency'
+import Link from 'next/link'
 
 const Card = () => {
     return (
-        <main>
+        <Link href='/all-candles/suede-vanilla-scented-candle'>
             <div className=' bg-[#FAF9F7]'>
-                <Image src={CandleCard} alt="candle card" className="w-full h-[33rem] object-contain" />
+                <Image src={CandleCard} alt="candle card" className="w-full lg:h-[33rem] h-[30rem] object-contain" />
             </div>
-            <div className="px-6 mt-10">
+            <div className="lg:px-6 px-2 lg:mt-10 mt-4">
                 <h2 className=' font-times text-xl font-thin'>Suede Vanilla Scented Candle</h2>
                 <p className=' font-karla text-sm font-light mt-1  text-foreground/70'>Private Collection, luxury scented candle, 360 gr</p>
                 <div className="mt-7">
@@ -31,7 +32,7 @@ const Card = () => {
                     </div>
                 </div>
             </div>
-        </main>
+        </Link>
     )
 }
 

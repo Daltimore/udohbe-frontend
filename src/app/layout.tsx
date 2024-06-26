@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { GFS_Neohellenic, Karla, Spectral, Roboto } from "next/font/google";
+import { GFS_Neohellenic, Karla, Spectral, Roboto, Inria_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { cn } from "@/lib/utils";
@@ -12,6 +12,13 @@ const gfs = GFS_Neohellenic({
   variable: "--font-gfs",
   weight: ["400", "700"],
   subsets: ['greek']
+});
+
+
+const inria = Inria_Sans({
+  variable: "--font-inria",
+  weight: ["400", "700"],
+  subsets: ['latin']
 });
 
 const karla = Karla({
@@ -85,6 +92,7 @@ export default function RootLayout({
         ${inai.variable} 
         ${times.variable}
         ${roboto.variable}
+        ${inria.variable}
         `)}>
         <div className="relative flex min-h-screen flex-col bg-background">
           <Header />

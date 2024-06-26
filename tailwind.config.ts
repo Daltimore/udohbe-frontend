@@ -26,6 +26,7 @@ const config = {
         inai: ["var(--font-inai)"],
         times: ["var(--font-times)"],
         roboto: ["var(--font-roboto)"],
+        inria: ["var(--font-inria)"],
       },
       colors: {
         border: "hsl(var(--border))",

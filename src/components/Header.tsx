@@ -28,27 +28,29 @@ const Header = () => {
     )
 
     return (
-        <div className=' bg-background z-50 w-full border-b text-foreground !font-gfs'>
-            <div className="container flex h-[4.5rem] max-w-screen-2xl items-center">
+        <div className=' bg-background z-50 w-full border-b text-foreground      !font-gfs'>
+            <div className="lg:container  px-4 flex h-[4.5rem]  items-center">
                 <div className="flex items-center justify-between w-full">
                     <div className="flex items-center gap-12">
-                        <Logo />
-                        <ul className="flex  text-sm gap-x-8  ">
+                        <Link href='/'>
+                            <Logo />
+                        </Link>
+                        <ul className="lg:flex  text-sm gap-x-8 hidden   ">
                             <li>
-                                <Link className={cn(pathName === '/' && 'relative flex  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-black/70 before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/'>ALL CANDLES</Link>
+                                <Link className={cn(pathName === '/all-candles' && 'relative flex text-[#958B88]  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-[#958B88] before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/all-candles'>ALL CANDLES</Link>
                             </li>
                             <li>
-                                <Link className={cn(pathName === '/flower' && 'relative flex  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-black/70 before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/flower'>FLOWER CANDLES</Link>
+                                <Link className={cn(pathName === '/flower-candles' && 'relative flex text-[#958B88]  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-[#958B88] before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/flower-candles'>FLOWER CANDLES</Link>
                             </li>
                             <li>
-                                <Link className={cn(pathName === '/luxury' && 'relative flex  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-black/70 before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/luxury'>LUXURY</Link>
+                                <Link className={cn(pathName === '/luxury' && 'relative flex text-[#958B88]  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-[#958B88] before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/luxury'>LUXURY</Link>
                             </li>
                             <li>
-                                <Link className={cn(pathName === '/collection' && 'relative flex  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-black/70 before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/collection'>OTHER COLLECTION</Link>
+                                <Link className={cn(pathName === '/other-collection' && 'relative flex text-[#958B88]  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-[#958B88] before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/other-collection'>OTHER COLLECTION</Link>
                             </li>
                         </ul>
                     </div>
-                    <div className="flex items-center gap-x-4">
+                    <div className="flex items-center lg:gap-x-4">
                         <div className="text-sm cursor-pointer">
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
@@ -71,7 +73,7 @@ const Header = () => {
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </div>
-                        <div className=" ml-5 flex items-center gap-10">
+                        <div className="ml-3 lg:ml-5 flex items-center gap-x-4 lg:gap-x-10">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15.7138 6.8382C18.1647 9.28913 18.1647 13.2629 15.7138 15.7138C13.2629 18.1647 9.28913 18.1647 6.8382 15.7138C4.38727 13.2629 4.38727 9.28913 6.8382 6.8382C9.28913 4.38727 13.2629 4.38727 15.7138 6.8382" stroke="#323232" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                 <path d="M19 19L15.71 15.71" stroke="#323232" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
