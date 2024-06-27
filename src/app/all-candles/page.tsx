@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import {
     Breadcrumb,
@@ -9,19 +7,19 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { usePathname } from 'next/navigation'
 import Filters from '@/components/Filters'
 import Card from '@/components/card'
 import { Button } from '@/components/ui/button'
-const page = () => {
-    const pathName = usePathname()
+import { getProduct } from '@/lib/api'
+import Link from 'next/link'
 
-    const formatPathname = (pathname: string) => {
-        const trimmedPath = pathname.replace(/^\//, '');
-        return trimmedPath.split('-')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
+const ProductPage = async ({ searchParams }: {
+    searchParams: {
+        [key: string]: string | string[] | undefined
     }
+}) => {
+
+    const response = await getProduct(searchParams.colour as string, searchParams.sort as string, 'candles')
 
     return (
         <div>
@@ -35,18 +33,20 @@ const page = () => {
                             /
                         </BreadcrumbSeparator>
                         <BreadcrumbItem>
-                            <BreadcrumbLink className=' font-spectral'>{formatPathname(pathName)}</BreadcrumbLink>
+                            <BreadcrumbLink className=' font-spectral'>All Candles</BreadcrumbLink>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
                 <div className="lg:mt-0 mt-5">
-                    <Filters />
+                    <Filters color={searchParams.colour} sort={searchParams.sort} />
                 </div>
 
             </div>
             <div className="lg:container mt-8 mb-32 gap-x-8 gap-y-16 max-w-screen-2xl mx-auto grid lg:grid-cols-3">
-                {Array.from({ length: 9 }, (_, index) => (
-                    <Card />
+                {response.data.map(item => (
+                    <Link href={`/all-candles/${item.id}`}>
+                        <Card item={item} key={item.id} />
+                    </Link>
                 ))}
             </div>
             <div className="flex items-center  justify-center mb-32">
@@ -58,4 +58,4 @@ const page = () => {
     )
 }
 
-export default page
+export default ProductPage

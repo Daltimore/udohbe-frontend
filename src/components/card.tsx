@@ -3,21 +3,24 @@ import React from 'react'
 import CandleCard from '../assets/images/candle-card.png'
 import Currency from './currency'
 import Link from 'next/link'
+import { Product, types } from '@/lib/api'
+import { convertSize } from '@/lib/utils'
 
-const Card = () => {
+const Card = ({ item }: { item: Product }) => {
+
     return (
-        <Link href='/all-candles/suede-vanilla-scented-candle'>
-            <div className=' bg-[#FAF9F7]'>
-                <Image src={CandleCard} alt="candle card" className="w-full lg:h-[33rem] h-[30rem] object-contain" />
+        <main>
+            <div className=' bg-[#FAF9F7] lg:mx-0 mx-4'>
+                <Image src={item.attributes.image ?? CandleCard} alt="candle card" className="w-full lg:h-[33rem] h-[30rem] object-contain " />
             </div>
-            <div className="lg:px-6 px-2 lg:mt-10 mt-4">
-                <h2 className=' font-times text-xl font-thin'>Suede Vanilla Scented Candle</h2>
-                <p className=' font-karla text-sm font-light mt-1  text-foreground/70'>Private Collection, luxury scented candle, 360 gr</p>
+            <div className="lg:px-6 px-4 lg:mt-10 mt-4">
+                <h2 className=' font-times text-xl font-thin'>{item.attributes.name}</h2>
+                <p className=' font-karla text-sm font-light mt-1  text-foreground/70'>{item.attributes.title}</p>
                 <div className="mt-7">
                     <div className='flex items-center justify-between'>
                         <div>
-                            <Currency value='22.90' />
-                            <p className=' font-roboto text-xs font-light mt-1  text-foreground/70'>360 gr (£113.61 / 1 kg)</p>
+                            <Currency value={item.attributes.amount.toLocaleString()} />
+                            <p className=' font-roboto text-xs font-light mt-1  text-foreground/70'>{convertSize(item.attributes)}</p>
                         </div>
                         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.75" y="0.75" width="48.5" height="48.5" rx="24.25" stroke="#BDBDBD" strokeWidth="1.5" />
@@ -32,7 +35,7 @@ const Card = () => {
                     </div>
                 </div>
             </div>
-        </Link>
+        </main>
     )
 }
 

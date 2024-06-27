@@ -7,15 +7,20 @@ import { Button } from "@/components/ui/button";
 import Card from "@/components/card";
 import Logo from "@/components/Logo";
 import beach from '../assets/images/beach.png'
-import { instance } from "@/lib/api";
+import { getUniqueProducts, instance } from "@/lib/api";
 import Carousel from "@/components/carousel";
-
-
-
-
+import qs from 'qs'
+import Link from "next/link";
 export default async function Home() {
-  const response = await instance.get('/api/products')
-  console.log(response.data, 'sheba')
+  const query = qs.stringify({
+    populate: '*',
+    fields: '*',
+    publicationState: 'live',
+    locale: ['en', 'de'],
+  }, {
+    encodeValuesOnly: true, // prettify url
+  });
+  const response = await getUniqueProducts()
 
 
   return (
@@ -33,9 +38,11 @@ export default async function Home() {
               <div className="lg:w-full w-[50%] lg:mr-0 mr-10 bg-background h-[1px] "></div>
             </div>
             <p className=" font-dream  font-medium  lg:text-8xl text-5xl capitalize text-background">Illuminate your senses right</p>
-            <Button className=" inline-flex hover:text-background font-karla h-[4rem] font-light uppercase w-[12rem] bg-background text-foreground shadow-none rounded-none">
-              shop now
-            </Button>
+            <Link href='/all-candles'>
+              <Button className=" inline-flex hover:text-background font-karla h-[4rem] font-light uppercase w-[12rem] bg-background text-foreground shadow-none rounded-none">
+                shop now
+              </Button>
+            </Link>
           </div>
 
         </div>
@@ -85,15 +92,17 @@ export default async function Home() {
       </div>
 
       <div className="relative container max-w-screen-2xl grid lg:grid-cols-3 gap-8 lg:mt-20 mt-10">
-        {Array.from({ length: 3 }, (_, index) => (
-          <Card />
+        {response.data.map(item => (
+          <Card key={item.id} item={item} />
         ))}
       </div>
 
       <div className="py-[7rem] text-center">
-        <Button className=" inline-flex font-karla h-[3rem] hover:text-background border border-foreground font-light uppercase w-[12rem] bg-background text-foreground shadow-none rounded-none">
-          Shop All Candles
-        </Button>
+        <Link href='/all-candles'>
+          <Button className=" inline-flex font-karla h-[3rem] hover:text-background border border-foreground font-light uppercase w-[12rem] bg-background text-foreground shadow-none rounded-none">
+            Shop All Candles
+          </Button>
+        </Link>
       </div>
 
       <div className=" bg-foreground lg:py-[8rem] pt-[3rem] pb-[6rem] flex justify-center !lg:px-12 ">

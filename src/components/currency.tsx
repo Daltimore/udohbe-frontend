@@ -1,10 +1,11 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { currencyEnum, useCurrencyStore } from '@/store'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-const Currency = ({ value }: { value: string }) => {
+const Currency = ({ value, className }: { value: string, className?: string }) => {
     const { currency } = useCurrencyStore()
     const [convertedValue, setConvertedValue] = useState<string>(value)
     const api = process.env.NEXT_PUBLIC_API_KEY
@@ -41,7 +42,7 @@ const Currency = ({ value }: { value: string }) => {
     }, [currency, value, api])
 
     return (
-        <div className=' font-times font-light text-xl'>
+        <div className={cn(`font-times font-light text-xl ${className}`)}>
             {convertedValue}
         </div>
     )
