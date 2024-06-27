@@ -48,7 +48,7 @@ const useCartStore = create<CartStore>((set) => ({
               ? {
                   ...item,
                   quantity: Math.min(
-                    item.quantity + quantity,
+                    item?.quantity + quantity,
                     product.attributes.quantity
                   ),
                 }
