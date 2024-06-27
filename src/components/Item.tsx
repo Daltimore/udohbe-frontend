@@ -23,14 +23,18 @@ import {
 } from "@/components/ui/accordion"
 import { Button } from '@/components/ui/button'
 import { convertSize } from '@/lib/utils'
-import useCartStore from '@/store/cart'
+import { useStore } from 'zustand'
+import { useCartStore } from '@/store/cart'
 
 const Item = ({ data }: { data: Product }) => {
-    const addToCart = useCartStore((state) => state.addToCart);
+    const addToCart = useStore(useCartStore, (state) => state.addToCart)
+
     const [quantity, setQuantity] = useState(1)
 
     const handleAddToCart = () => {
-        addToCart(data, quantity)
+        if (addToCart) {
+            addToCart(data, quantity)
+        }
     }
 
 
@@ -48,7 +52,7 @@ const Item = ({ data }: { data: Product }) => {
                         </BreadcrumbItem>
                         <BreadcrumbSeparator>/</BreadcrumbSeparator>
                         <BreadcrumbItem>
-                            <BreadcrumbLink className='font-spectral'>{data.attributes.name}</BreadcrumbLink>
+                            <BreadcrumbLink className='font-spectral'>{data?.attributes?.name}</BreadcrumbLink>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
@@ -57,18 +61,18 @@ const Item = ({ data }: { data: Product }) => {
             <div className="lg:container lg:flex lg:px-[8rem] lg:gap-[5rem] justify-between px-4  max-w-screen-2xl items-center mt-5">
                 <div className="mt-5 lg:flex-1">
                     <div className=' bg-[#FAF9F7] border-[#F1EFEF]'>
-                        <Image src={data.attributes.image ?? CandleCard} alt="candle card" className="w-full lg:h-[45rem] h-[30rem] object-contain" />
+                        <Image src={data?.attributes?.image ?? CandleCard} alt="candle card" className="w-full lg:h-[45rem] h-[30rem] object-contain" />
                     </div>
                 </div>
                 <div className='  lg:flex-1'>
                     <div className='px-4 mt-5'>
-                        <h2 className=' font-times lg:text-2xl text-lg font-thin'>{data.attributes.name}</h2>
-                        <p className=' font-karla text-sm lg:text-base font-light mt-1  text-foreground/70'>{data.attributes.title}</p>
+                        <h2 className=' font-times lg:text-2xl text-lg font-thin'>{data?.attributes?.name}</h2>
+                        <p className=' font-karla text-sm lg:text-base font-light mt-1  text-foreground/70'>{data?.attributes?.title}</p>
                         <div className='block lg:hidden'>
                             <div className="mt-7">
                                 <div className='flex items-center justify-between'>
                                     <div>
-                                        <Currency value={(data.attributes.amount * quantity).toLocaleString()} />
+                                        <Currency value={(data?.attributes?.amount * quantity)?.toLocaleString()} />
                                         <p className=' font-roboto text-xs font-light mt-1  text-foreground/70'>{convertSize(data.attributes)}</p>
                                     </div>
                                     <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,12 +92,12 @@ const Item = ({ data }: { data: Product }) => {
                                 <div className='flex gap-4 mt-3'>
                                     <div className=' flex flex-col items-center justify-center border border-foreground/40'>
                                         <Image src={CandleCard} alt="candle card" className="w-full h-[6rem] object-contain" />
-                                        <p className='-mt-2 font-karla text-sm mb-2'>{convertSize(data.attributes)}</p>
+                                        <p className='-mt-2 font-karla text-sm mb-2'>{convertSize(data?.attributes)}</p>
                                     </div>
                                     <div>
                                         <div className='  cursor-not-allowed flex flex-col items-center justify-center'>
                                             <Image src={CandleCard} alt="candle card" className="w-full  h-[6rem] object-contain" />
-                                            <p className='-mt-2 opacity-40 font-karla text-center text-sm mb-2'>{convertSize({ ...data.attributes, size: 227 })}  (sold out)</p>
+                                            <p className='-mt-2 opacity-40 font-karla text-center text-sm mb-2'>{convertSize({ ...data?.attributes, size: 227 })}  (sold out)</p>
 
                                         </div>
 
@@ -128,13 +132,13 @@ const Item = ({ data }: { data: Product }) => {
                                     <AccordionItem value="item-1">
                                         <AccordionTrigger className=' !no-underline text-base font-karla font-light opacity-50'>DESCRIPTION</AccordionTrigger>
                                         <AccordionContent className=' font-inria opacity-70 '>
-                                            {data.attributes.description}
+                                            {data?.attributes?.description}
                                         </AccordionContent>
                                     </AccordionItem>
                                     <AccordionItem value="item-2">
                                         <AccordionTrigger className=' !no-underline text-base font-karla font-light opacity-50'>PRODUCT DETAILS</AccordionTrigger>
                                         <AccordionContent className=' font-inria opacity-70'>
-                                            {data.attributes.details}
+                                            {data?.attributes?.details}
                                         </AccordionContent>
                                     </AccordionItem>
                                 </Accordion>
@@ -161,7 +165,7 @@ const Item = ({ data }: { data: Product }) => {
                                 <Quantity quantity={quantity} setQuantity={setQuantity} />
                                 <div>
                                     <h2 className=' font-karla  text-base  font-light uppercase'>Price</h2>
-                                    <Currency value={(data.attributes.amount * quantity).toLocaleString()} className='text-3xl mt-2' />
+                                    <Currency value={(data?.attributes?.amount * quantity)?.toLocaleString()} className='text-3xl mt-2' />
                                 </div>
 
                             </div>

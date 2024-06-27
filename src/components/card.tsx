@@ -11,16 +11,16 @@ const Card = ({ item }: { item: Product }) => {
     return (
         <main>
             <div className=' bg-[#FAF9F7] lg:mx-0 mx-4'>
-                <Image src={item.attributes.image ?? CandleCard} alt="candle card" className="w-full lg:h-[33rem] h-[30rem] object-contain " />
+                <Image src={item?.attributes?.image ?? CandleCard} alt="candle card" className="w-full lg:h-[33rem] h-[30rem] object-contain " />
             </div>
             <div className="lg:px-6 px-4 lg:mt-10 mt-4">
-                <h2 className=' font-times text-xl font-thin'>{item.attributes.name}</h2>
-                <p className=' font-karla text-sm font-light mt-1  text-foreground/70'>{item.attributes.title}</p>
+                <h2 className=' font-times text-xl font-thin'>{item?.attributes?.name}</h2>
+                <p className=' font-karla text-sm font-light mt-1  text-foreground/70'>{item?.attributes?.title}</p>
                 <div className="mt-7">
                     <div className='flex items-center justify-between'>
                         <div>
-                            <Currency value={item.attributes.amount.toLocaleString()} />
-                            <p className=' font-roboto text-xs font-light mt-1  text-foreground/70'>{convertSize(item.attributes)}</p>
+                            <Currency value={item?.attributes?.amount?.toLocaleString()} />
+                            <p className=' font-roboto text-xs font-light mt-1  text-foreground/70'>{convertSize(item?.attributes)}</p>
                         </div>
                         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.75" y="0.75" width="48.5" height="48.5" rx="24.25" stroke="#BDBDBD" strokeWidth="1.5" />

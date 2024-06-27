@@ -93,7 +93,7 @@ export default async function Home() {
 
       <div className="relative container max-w-screen-2xl grid lg:grid-cols-3 gap-8 lg:mt-20 mt-10">
         {response.data.map(item => (
-          <Card key={item.id} item={item} />
+          <Card key={item?.id} item={item} />
         ))}
       </div>
 

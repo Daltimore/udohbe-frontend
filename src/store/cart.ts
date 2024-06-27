@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type ProductAttributes = {
   product_id: string;
@@ -34,49 +36,51 @@ interface CartStore {
   updateCartItemQuantity: (productId: number, newQuantity: number) => void;
 }
 
-const useCartStore = create<CartStore>((set) => ({
-  cart: [],
-  addToCart: (product, quantity) =>
-    set((state) => {
-      const existingItem = state.cart.find(
-        (item) => item.product.id === product.id
-      );
-      if (existingItem) {
-        return {
-          cart: state.cart.map((item) =>
-            item.product.id === product.id
+export const useCartStore = create(
+  persist<CartStore>(
+    (set, get) => ({
+      cart: [],
+      addToCart: (product, quantity) =>
+        set((state) => {
+          const existingItem = state?.cart.find(
+            (item) => item?.product?.id === product?.id
+          );
+          if (existingItem) {
+            return {
+              cart: state.cart.map((item) =>
+                item?.product?.id === product?.id
+                  ? {
+                      ...item,
+                      quantity: Math.min(
+                        item?.quantity + quantity,
+                        product?.attributes?.quantity
+                      ),
+                    }
+                  : item
+              ),
+            };
+          } else {
+            return { cart: [...state.cart, { product, quantity }] };
+          }
+        }),
+      removeFromCart: (productId) =>
+        set((state) => ({
+          cart: state?.cart.filter((item) => item?.product?.id !== productId),
+        })),
+      updateCartItemQuantity: (productId, newQuantity) =>
+        set((state) => ({
+          cart: state?.cart.map((item) =>
+            item?.product?.id === productId
               ? {
                   ...item,
-                  quantity: Math.min(
-                    item?.quantity + quantity,
-                    product.attributes.quantity
-                  ),
+                  quantity: newQuantity,
                 }
               : item
           ),
-        };
-      } else {
-        return { cart: [...state.cart, { product, quantity }] };
-      }
+        })),
     }),
-  removeFromCart: (productId) =>
-    set((state) => ({
-      cart: state.cart.filter((item) => item.product.id !== productId),
-    })),
-  updateCartItemQuantity: (productId, newQuantity) =>
-    set((state) => ({
-      cart: state.cart.map((item) =>
-        item.product.id === productId
-          ? {
-              ...item,
-              quantity: Math.max(
-                0,
-                Math.min(newQuantity, item.product.attributes.quantity)
-              ),
-            }
-          : item
-      ),
-    })),
-}));
-
-export default useCartStore;
+    {
+      name: "cart",
+    }
+  )
+);

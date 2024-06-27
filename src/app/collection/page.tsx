@@ -43,7 +43,7 @@ const ProductPage = async ({ searchParams }: {
             </div>
             <div className="lg:container mt-8 mb-32 gap-x-8 gap-y-16 max-w-screen-2xl mx-auto grid lg:grid-cols-3">
                 {response.data.map(item => (
-                    <Card item={item} key={item.id} />
+                    <Card item={item} key={item?.id} />
                 ))}
             </div>
             <div className="flex items-center  justify-center mb-32">

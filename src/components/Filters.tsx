@@ -79,14 +79,13 @@ const Filters = ({ color, sort }: { color: string | string[] | undefined, sort: 
 
     const handleFilterChange = (filterName: string, value: string) => {
         const params = new URLSearchParams(searchParams.toString())
-        params.set(filterName.toLowerCase(), value)
+        params.set(filterName?.toLowerCase(), value)
         router.push(`?${params.toString()}`)
     }
 
     const clearFilter = (filterName: string) => {
-        console.log(filterName, 'shiek')
         const params = new URLSearchParams(searchParams.toString())
-        params.delete(filterName.toLowerCase())
+        params.delete(filterName?.toLowerCase())
         router.push(`?${params.toString()}`)
     }
 
@@ -110,7 +109,7 @@ const Filters = ({ color, sort }: { color: string | string[] | undefined, sort: 
                                     <DropdownMenuLabel className=" uppercase text-center font-light"> {filter.name}</DropdownMenuLabel>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuRadioGroup
-                                        value={searchParams.get(filter.name.toLowerCase()) || ''}
+                                        value={searchParams.get(filter?.name?.toLowerCase()) || ''}
                                         onValueChange={(value) => handleFilterChange(filter.name, value)}
                                     >
                                         {filter.options.map((option, index) => (
