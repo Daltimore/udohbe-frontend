@@ -115,7 +115,6 @@ export default async function Home() {
             key={item?.id}
             href={`/${formatLink(item.attributes.types)}/${item.id}`}>
             <Card key={item?.id} item={item} />
-            {item.attributes.types}
           </Link>
 
         ))}
