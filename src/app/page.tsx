@@ -22,6 +22,25 @@ export default async function Home() {
   });
   const response = await getUniqueProducts()
 
+  const formatLink = (link: string) => {
+    let name = ''
+    switch (link) {
+      case 'candles':
+        name = 'all-candles'
+        break;
+      case 'oil-diffusers':
+        name = 'oil-diffusers'
+        break;
+      case 'collections':
+        name = 'collection'
+        break;
+      default:
+        break;
+    }
+
+    return name
+  }
+
 
   return (
     <main className="w-full overflow-hidden" >
@@ -93,7 +112,14 @@ export default async function Home() {
 
       <div className="relative container max-w-screen-2xl grid lg:grid-cols-3 gap-8 lg:mt-20 mt-10">
         {response.data.map(item => (
-          <Card key={item?.id} item={item} />
+
+          <Link
+            key={item?.id}
+            href={`/${formatLink(item.attributes.types)}/${item.id}`}>
+            <Card key={item?.id} item={item} />
+            {item.attributes.types}
+          </Link>
+
         ))}
       </div>
 

@@ -14,6 +14,7 @@ import { convertSize } from '@/lib/utils';
 import { Product } from '@/lib/api';
 import Currency from './currency';
 import { Button } from './ui/button';
+import Link from 'next/link';
 
 const Cart = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>> }) => {
     const cartStore = useStore(useCartStore, (state) => state.cart)
@@ -105,9 +106,11 @@ const Cart = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: React.Dispatc
                                 <p>Sub-total:</p>
                                 <p>     <Currency className='text-sm font-inria' value={calculateSubtotal().toLocaleString()} /></p>
                             </div>
-                            <Button className='w-full bg-foreground text-background  rounded-none  font-inria mt-4 mb-2 h-[3rem]'>
-                                CHECKOUT
-                            </Button>
+                            <Link href='/cart'>
+                                <Button className='w-full bg-foreground text-background  rounded-none  font-inria mt-4 mb-2 h-[3rem]'>
+                                    CHECKOUT
+                                </Button>
+                            </Link>
                             <p className=' text-center font-inria text-xs  text-foreground/70 '>Shipping will be calculated at checkout</p>
                         </div>
                     )}

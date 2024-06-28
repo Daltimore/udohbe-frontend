@@ -13,7 +13,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { currencyEnum, useCurrencyStore } from "@/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cart from "./Cart";
 import { useStore } from 'zustand'
 import { useCartStore } from "@/store/cart";
@@ -26,6 +26,9 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
     const cartStore = useStore(useCartStore, (state) => state)
 
+    useEffect(() => {
+        setIsOpen(false);
+    }, [pathName]);
 
 
     const UKFlag = () => (

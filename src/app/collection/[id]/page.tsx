@@ -11,7 +11,7 @@ const page = async ({ params }: {
     const data = response.data
 
     return (
-        <Item data={data} name='All Candles' />
+        <Item data={data} name='Collections' />
     )
 }
 

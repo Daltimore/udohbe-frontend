@@ -11,6 +11,7 @@ import Filters from '@/components/Filters'
 import Card from '@/components/card'
 import { Button } from '@/components/ui/button'
 import { getProduct } from '@/lib/api'
+import Link from 'next/link'
 
 const ProductPage = async ({ searchParams }: {
     searchParams: {
@@ -43,7 +44,11 @@ const ProductPage = async ({ searchParams }: {
             </div>
             <div className="lg:container mt-8 mb-32 gap-x-8 gap-y-16 max-w-screen-2xl mx-auto grid lg:grid-cols-3">
                 {response.data.map(item => (
-                    <Card item={item} key={item?.id} />
+                    <Link
+                        key={item?.id}
+                        href={`/oil-diffusers/${item.id}`}>
+                        <Card item={item} key={item?.id} />
+                    </Link>
                 ))}
             </div>
             <div className="flex items-center  justify-center mb-32">

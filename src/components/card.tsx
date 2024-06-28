@@ -10,7 +10,6 @@ import { useStore } from 'zustand'
 import { useCartStore } from '@/store/cart'
 
 const Card = ({ item }: { item: Product }) => {
-
     const cartStore = useStore(useCartStore, (state) => state.cart)
     const addToCart = useStore(useCartStore, (state) => state.addToCart)
 
@@ -21,14 +20,6 @@ const Card = ({ item }: { item: Product }) => {
     }
 
     const isDisabled = cartStore.some((cart) => cart.product.id === item.id);
-
-
-
-
-    console.log(cartStore, 'tweaking')
-    console.log(item, 'hitem')
-
-
     return (
         <main>
             <div className=' bg-[#FAF9F7] lg:mx-0 mx-4'>

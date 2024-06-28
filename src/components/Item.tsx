@@ -26,8 +26,13 @@ import { convertSize } from '@/lib/utils'
 import { useStore } from 'zustand'
 import { useCartStore } from '@/store/cart'
 
-const Item = ({ data }: { data: Product }) => {
+const Item = ({ data, name }: { data: Product, name: string }) => {
     const addToCart = useStore(useCartStore, (state) => state.addToCart)
+    const cartStore = useStore(useCartStore, (state) => state.cart)
+
+    const isDisabled = cartStore.some((cart) => cart.product.id === data.id);
+
+
 
     const [quantity, setQuantity] = useState(1)
 
@@ -48,7 +53,7 @@ const Item = ({ data }: { data: Product }) => {
                         </BreadcrumbItem>
                         <BreadcrumbSeparator>/</BreadcrumbSeparator>
                         <BreadcrumbItem>
-                            <BreadcrumbLink className='font-spectral text-[#958B88]' href="/all-candles">All Candles</BreadcrumbLink>
+                            <BreadcrumbLink className='font-spectral text-[#958B88]' href="/all-candles">{name}</BreadcrumbLink>
                         </BreadcrumbItem>
                         <BreadcrumbSeparator>/</BreadcrumbSeparator>
                         <BreadcrumbItem>
@@ -113,13 +118,13 @@ const Item = ({ data }: { data: Product }) => {
                                     <AccordionItem value="item-1">
                                         <AccordionTrigger className=' !no-underline text-base font-karla font-light opacity-50'>DESCRIPTION</AccordionTrigger>
                                         <AccordionContent className=' font-inria opacity-70'>
-                                            Introducing our stunning Black Elegance Dress - a timeless piece that exudes sophistication and versatility. Crafted with meticulous attention to detail, this black dress is a must-have addition to your wardrobe.
+                                            {data?.attributes?.description}
                                         </AccordionContent>
                                     </AccordionItem>
                                     <AccordionItem value="item-2">
                                         <AccordionTrigger className=' !no-underline text-base font-karla font-light opacity-50'>PRODUCT DETAILS</AccordionTrigger>
                                         <AccordionContent className=' font-inria opacity-70'>
-                                            Introducing our stunning Black Elegance Dress - a timeless piece that exudes sophistication and versatility. Crafted with meticulous attention to detail, this black dress is a must-have addition to your wardrobe.
+                                            {data?.attributes?.details}
                                         </AccordionContent>
                                     </AccordionItem>
                                 </Accordion>
@@ -173,8 +178,8 @@ const Item = ({ data }: { data: Product }) => {
                     </div>
 
                     <div className='lg:px-4 lg:py-10'>
-                        <Button onClick={handleAddToCart} className='w-full bg-foreground text-background  rounded-none font-spectral mt-12 mb-5 h-[3rem]'>
-                            ADD TO CART
+                        <Button disabled={isDisabled} onClick={handleAddToCart} className='w-full bg-foreground text-background  rounded-none font-spectral mt-12 mb-5 h-[3rem]'>
+                            {!isDisabled ? 'ADD TO CART' : 'ALREADY IN CART'}
                         </Button>
                     </div>
                 </div>
