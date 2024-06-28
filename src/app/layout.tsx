@@ -94,7 +94,7 @@ export default function RootLayout({
         ${roboto.variable}
         ${inria.variable}
         `)}>
-        <div className="relative flex min-h-screen flex-col bg-background">
+        <div className="relative  flex min-h-screen flex-col bg-background">
           <Header />
           {children}
           <Footer />

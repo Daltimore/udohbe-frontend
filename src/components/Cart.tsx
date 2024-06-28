@@ -34,8 +34,6 @@ const Cart = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: React.Dispatc
         }, 0);
     };
 
-    console.log(calculateSubtotal, 'amount is')
-
     return (
         <div>
             <Sheet open={isOpen} onOpenChange={(value: boolean) => setIsOpen(value)}>

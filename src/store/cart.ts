@@ -30,16 +30,19 @@ type CartItem = {
 };
 
 interface CartStore {
+  total: number;
   cart: CartItem[];
   addToCart: (product: Product, quantity: number) => void;
   removeFromCart: (productId: number) => void;
   updateCartItemQuantity: (productId: number, newQuantity: number) => void;
+  updateTotal: (total: number) => void;
 }
 
 export const useCartStore = create(
   persist<CartStore>(
     (set, get) => ({
       cart: [],
+      total: 0,
       addToCart: (product, quantity) =>
         set((state) => {
           const existingItem = state?.cart.find(
@@ -78,6 +81,7 @@ export const useCartStore = create(
               : item
           ),
         })),
+      updateTotal: (total) => set({ total }),
     }),
     {
       name: "cart",
