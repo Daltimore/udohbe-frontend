@@ -4,20 +4,20 @@ import { useEffect, useState } from "react";
 export default function Carousel() {
     const slides = [
         {
-            title: "Express Shipping",
-            description: "Express shipping on all domestic orders."
+            title: "Sustainable packaging",
+            description: "Eco-friendly recyclable paper packaging."
         },
         {
-            title: "Exchange",
-            description: "Exchange your bad product or get your money back"
+            title: "Secure payments",
+            description: "Reliable and secure online purchases."
         },
         {
-            title: "Return period",
-            description: "Something you bought isn't it? Please send it back within 1 day."
+            title: "Vegan",
+            description: "High quality soy wax scented candles."
         },
         {
-            title: "Money back guarantee",
-            description: "Get a full refund for all products, no questions asked"
+            title: "Hand-poured",
+            description: "Premium scented candles meticulously made in Morocco"
         }
     ];
 

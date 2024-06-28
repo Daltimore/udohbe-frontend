@@ -70,30 +70,28 @@ export default async function Home() {
       <div className="relative lg:block hidden  container max-w-screen-2xl">
         <div className="grid grid-cols-4 py-[4.5rem]">
           <div className="lg:px-20 text-center border-r py-4">
-            <h2 className=" font-spectral text-center">Express Shipping</h2>
+            <h2 className=" font-spectral text-center">Sustainable packaging</h2>
             <p className="mt-3 font-karla leading-7 text-foreground/70 font-light">
-              Express shipping on all
-              domestic orders.
+              Eco-friendly recyclable paper packaging.
+
             </p>
           </div>
           <div className="lg:px-20 text-center py-4">
-            <h2 className=" font-spectral text-center">Exchange</h2>
+            <h2 className=" font-spectral text-center">Secure payments</h2>
             <p className="mt-3 font-karla leading-7 text-foreground/70 font-light">
-              Exchange your bad product or get
-              your money back
+              Reliable and secure online purchases.
             </p>
           </div>
           <div className="lg:px-20 text-center py-4 border-r">
-            <h2 className=" font-spectral text-center">Return period</h2>
+            <h2 className=" font-spectral text-center">Vegan</h2>
             <p className="mt-3 font-karla leading-7 text-foreground/70 font-light">
-              Something you bought isn’t it? Please send it back within 1 day.
+              High quality soy wax scented candles.
             </p>
           </div>
           <div className="lg:px-20 text-center py-4">
-            <h2 className=" font-spectral text-center">Money back guarantee</h2>
+            <h2 className=" font-spectral text-center">Hand-poured</h2>
             <p className="mt-3 font-karla leading-7 text-foreground/70 font-light">
-              Get a full refund for all products, no
-              questions asked
+              Premium scented candles meticulously made in Morocco
             </p>
           </div>
         </div>
