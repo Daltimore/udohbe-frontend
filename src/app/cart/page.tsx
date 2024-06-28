@@ -20,10 +20,15 @@ import {
 import Image from 'next/image'
 import payment from '../../assets/svg/payment.svg'
 import Checkout from '@/components/Checkout'
+import PayazaCheckout from "@payaza/web-sdk";
+import { PayazaCheckoutOptionsInterface } from '@payaza/web-sdk/lib/PayazaCheckoutDataInterface'
+import { useStore } from 'zustand'
+import { useCartStore } from '@/store/cart'
+import { convertCurrency } from '@/lib/utils'
 
 const Cart = () => {
+    const total = useStore(useCartStore, (state) => state.total)
     const [shipping, setShipping] = useState('1')
-    const [amount, setAmount] = useState(0)
     const [data, setData] = useState({
         first_name: '',
         last_name: '',
@@ -35,13 +40,39 @@ const Cart = () => {
         phone: '',
     })
 
+    const merchantKey = process.env.NEXT_PUBLIC_MARCHANT_KEY as string
+
     const updateShipping = (value: string) => {
         setShipping(value)
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(data, 'dhata')
+        const convertAmount = await convertCurrency(total.toLocaleString(), true)
+        const fixedAmount = convertAmount.toFixed(2)
+
+        console.log(merchantKey, 'mashant')
+
+        const resonse: PayazaCheckoutOptionsInterface = {
+            merchant_key: merchantKey,
+            connection_mode: PayazaCheckout.LIVE_CONNECTION_MODE,
+            checkout_amount: 5,
+            // checkout_amount: Number(fixedAmount),
+            email_address: data.email,
+            first_name: data.first_name,
+            last_name: data.last_name,
+            phone_number: data.phone,
+            transaction_reference: `${data.first_name}-${data.last_name}-${data.email}-${fixedAmount}-${new Date().getTime()}`,
+            onClose: function () {
+                console.log("Closed")
+            },
+            callback: function (callbackResponse) {
+                console.log(callbackResponse)
+            }
+        }
+        const checkout = new PayazaCheckout(resonse)
+        checkout.showPopup()
+
     }
 
     return (
@@ -147,11 +178,25 @@ const Cart = () => {
                                 <div className="grid font-gfs gap-y-5 w-full ">
                                     <div className='w-full'>
                                         <p>Country</p>
-                                        <input type="text" className=" border-b pb-2 w-full outline-none focus:outline-none border-gray-300/90    sm:text-sm" placeholder="Enter Country" />
+                                        <input
+                                            value={data.country}
+                                            onChange={
+                                                (e) => {
+                                                    setData({ ...data, country: e.target.value })
+                                                }
+                                            }
+                                            type="text" className=" border-b pb-2 w-full outline-none focus:outline-none border-gray-300/90    sm:text-sm" placeholder="Enter Country" />
                                     </div>
                                     <div className='w-full'>
                                         <p>City</p>
-                                        <input type="text" className=" border-b pb-2 outline-none w-full focus:outline-none border-gray-300/90    sm:text-sm" placeholder="Enter City" />
+                                        <input
+                                            value={data.city}
+                                            onChange={
+                                                (e) => {
+                                                    setData({ ...data, city: e.target.value })
+                                                }
+                                            }
+                                            type="text" className=" border-b pb-2 outline-none w-full focus:outline-none border-gray-300/90    sm:text-sm" placeholder="Enter City" />
                                     </div>
                                     <div className='w-full'>
                                         <p>Post Code</p>
@@ -164,6 +209,18 @@ const Cart = () => {
                                                 }
                                             }
                                             type="text" className=" border-b pb-2 outline-none w-full focus:outline-none border-gray-300/90    sm:text-sm" placeholder="Enter Post Code" />
+                                    </div>
+                                    <div className='w-full'>
+                                        <p>Address</p>
+                                        <input
+                                            required
+                                            value={data.address}
+                                            onChange={
+                                                (e) => {
+                                                    setData({ ...data, address: e.target.value })
+                                                }
+                                            }
+                                            type="text" className=" border-b pb-2 outline-none w-full focus:outline-none border-gray-300/90    sm:text-sm" placeholder="Enter Address" />
                                     </div>
                                 </div>
 
@@ -237,7 +294,7 @@ const Cart = () => {
                             </CardContent>
 
                         </Card>
-                        <Card className='py-4'>
+                        {/* <Card className='py-4'>
                             <CardHeader>
                                 <CardTitle className=' font-inria  text-lg flex items-center'>
                                     <div className=' bg-foreground rounded-full flex justify-center items-center text-background w-6 h-6 mr-3 text-xs '>
@@ -266,7 +323,7 @@ const Cart = () => {
                                     </div>
                                 </div>
                             </CardContent>
-                        </Card>
+                        </Card> */}
                     </div>
                     <div className="lg:col-span-4 ">
                         <div className='bg-[#FAFAFA]'>
