@@ -137,7 +137,7 @@ const Header = () => {
                             <Logo />
                         </Link>
                     </SheetHeader>
-                    <ul className="flex-col flex  text-sm gap-x-8  mt-5 gap-y-5 font-gfs text-sm  ">
+                    <ul className="flex-col flex  text-sm gap-x-8  mt-5 gap-y-5 font-gfs  ">
                         <li>
                             <Link className={cn(pathName === '/all-candles' && 'relative text-[#958B88]  ')} href='/all-candles'>ALL LUXURY CANDLES</Link>
                         </li>
