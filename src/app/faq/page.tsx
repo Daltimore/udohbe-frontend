@@ -76,7 +76,7 @@ const FAQ = () => {
                             Item Not Received:
                         </h1>
                         <p className='mt-5 opacity-70 ml-5'>
-                            In case your order hasn&apos;t arrived within the estimated delivery time, please allow an additional 2 business days before contacting us, as packages may experience delays with the courier service. Once dispatched, it's the responsibility of the postal service to ensure timely delivery.
+                            In case your order hasn&#39;t arrived within the estimated delivery time, please allow an additional 2 business days before contacting us, as packages may experience delays with the courier service. Once dispatched, it&#39;s the responsibility of the postal service to ensure timely delivery.
                         </p>
                     </div>
                     <h1 className=' text-2xl mt-10  font-times'>
