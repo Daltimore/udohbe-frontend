@@ -56,7 +56,7 @@ export default async function Home() {
               <div className=" !font-karla text-sm font-light uppercase text-background w-full flex-1 text-nowrap">Udohbe candles</div>
               <div className="lg:w-full w-[50%] lg:mr-0 mr-10 bg-background h-[1px] "></div>
             </div>
-            <p className=" font-dream  font-medium  lg:text-8xl text-5xl capitalize text-background">Illuminate your senses right</p>
+            <p className=" font-dream  font-medium  lg:text-8xl text-5xl capitalize text-background">An ode to Udohbé</p>
             <Link href='/all-candles'>
               <Button className=" inline-flex hover:text-background font-karla h-[4rem] font-light uppercase w-[12rem] bg-background text-foreground shadow-none rounded-none">
                 shop now
@@ -106,7 +106,7 @@ export default async function Home() {
 
 
       <div className="mt-[4.5rem] text-center">
-        <h1 className=" font-dream lg:text-5xl  text-3xl">Illuminate your senses</h1>
+        <h1 className=" font-dream lg:text-5xl  text-3xl">An ode to Udohbé</h1>
         <p className=" font-karla mt-4 lg:text-2xl  text-lg lg:px-0 px-8  font-light text-foreground/70">Shop some of the classics we have today and get peace of mind</p>
       </div>
 

@@ -23,7 +23,6 @@ const Cart = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: React.Dispatc
 
     const handleQuantityChange = (productId: number, newQuantity: number) => {
         if (!isNaN(newQuantity) && newQuantity >= 0) {
-            console.log(newQuantity, 'whats happeningss')
             if (updateCartItemQuantity)
                 updateCartItemQuantity(productId, newQuantity);
         }

@@ -17,6 +17,16 @@ import { useEffect, useState } from "react";
 import Cart from "./Cart";
 import { useStore } from 'zustand'
 import { useCartStore } from "@/store/cart";
+import {
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet"
 
 
 
@@ -24,10 +34,12 @@ const Header = () => {
     const pathName = usePathname();
     const { currency, setCurrency } = useCurrencyStore()
     const [isOpen, setIsOpen] = useState(false)
+    const [isMobileOpen, setIsMobileOpen] = useState(false)
     const cartStore = useStore(useCartStore, (state) => state)
 
     useEffect(() => {
         setIsOpen(false);
+        setIsMobileOpen(false);
     }, [pathName]);
 
 
@@ -46,21 +58,26 @@ const Header = () => {
                 <div className="lg:container  px-4 flex h-[4.5rem]  items-center">
                     <div className="flex items-center justify-between w-full">
                         <div className="flex items-center gap-12">
-                            <Link href='/'>
-                                <Logo />
-                            </Link>
+                            <div className="flex items-center gap-3">
+                                <svg onClick={() => setIsMobileOpen(true)} className="lg:hidden " width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.99805 3.99839H14.003" stroke="#0E0E0E" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M11.3353 7.99998H1.99805" stroke="#0E0E0E" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M1.99805 12.0017H8.66749" stroke="#0E0E0E" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+
+                                <Link href='/'>
+                                    <Logo />
+                                </Link>
+                            </div>
                             <ul className="lg:flex  text-sm gap-x-8 hidden   ">
                                 <li>
-                                    <Link className={cn(pathName === '/all-candles' && 'relative flex text-[#958B88]  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-[#958B88] before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/all-candles'>ALL CANDLES</Link>
+                                    <Link className={cn(pathName === '/all-candles' && 'relative flex text-[#958B88]  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-[#958B88] before:w-[0.3rem] before:h-[0.3rem] before:rounded-full uppercase ')} href='/all-candles'>ALL LUXURY CANDLES</Link>
                                 </li>
                                 <li>
                                     <Link className={cn(pathName === '/oil-diffusers' && 'relative flex text-[#958B88]  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-[#958B88] before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/oil-diffusers'>OIL DIFFUSERS</Link>
                                 </li>
-                                {/* <li>
-                                <Link className={cn(pathName === '/luxury' && 'relative flex text-[#958B88]  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-[#958B88] before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/luxury'>LUXURY</Link>
-                            </li> */}
                                 <li>
-                                    <Link className={cn(pathName === '/collections' && 'relative flex text-[#958B88]  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-[#958B88] before:w-[0.3rem] before:h-[0.3rem] before:rounded-full ')} href='/collections'>COLLECTIONS</Link>
+                                    <Link className={cn(pathName === '/collection' && 'relative flex text-[#958B88]  items-center justify-center w-full  before:absolute before:-bottom-2 before:bg-[#958B88] before:w-[0.3rem] before:h-[0.3rem] before:rounded-full uppercase ')} href='/collection'>CANDLE SETS</Link>
                                 </li>
                             </ul>
                         </div>
@@ -111,6 +128,29 @@ const Header = () => {
             </div>
 
             <Cart isOpen={isOpen} setIsOpen={setIsOpen} />
+
+            <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
+
+                <SheetContent>
+                    <SheetHeader>
+                        <Link href='/'>
+                            <Logo />
+                        </Link>
+                    </SheetHeader>
+                    <ul className="flex-col flex  text-sm gap-x-8  mt-5 gap-y-5 font-gfs text-sm  ">
+                        <li>
+                            <Link className={cn(pathName === '/all-candles' && 'relative text-[#958B88]  ')} href='/all-candles'>ALL LUXURY CANDLES</Link>
+                        </li>
+                        <li>
+                            <Link className={cn(pathName === '/oil-diffusers' && 'relative text-[#958B88] ')} href='/oil-diffusers'>OIL DIFFUSERS</Link>
+                        </li>
+                        <li>
+                            <Link className={cn(pathName === '/collection' && 'relative text-[#958B88]  ')} href='/collection'>CANDLE SETS</Link>
+                        </li>
+                    </ul>
+
+                </SheetContent>
+            </Sheet>
 
         </main>
 

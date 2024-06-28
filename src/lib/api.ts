@@ -57,7 +57,6 @@ export const getUniqueProducts = async (): Promise<ApiResponse> => {
   const response = await instance.get<ApiResponse>(
     "/api/products?filters[is_unique][$eq]=true"
   );
-  console.log(response.data.data);
   return response.data;
 };
 

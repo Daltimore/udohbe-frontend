@@ -43,7 +43,7 @@ const Card = ({ item }: { item: Product }) => {
                                         : "text-foreground/50 ",
                                     "hover:text-background hover:fill-[#958B88] fill-transparent"
                                 )}
-                                fill-rule="evenodd">
+                                fillRule="evenodd">
                                 <rect x="0.75" y="0.75" width="48.5" height="48.5" rx="24.25" stroke="currentColor" strokeWidth="1.5" />
                                 <path d="M20.9999 16L18.8899 19.777" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                                 <path d="M28 16L30.3 19.777" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />

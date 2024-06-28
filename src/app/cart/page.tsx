@@ -51,8 +51,6 @@ const Cart = () => {
         const convertAmount = await convertCurrency(total.toLocaleString(), true)
         const fixedAmount = convertAmount.toFixed(2)
 
-        console.log(merchantKey, 'mashant')
-
         const resonse: PayazaCheckoutOptionsInterface = {
             merchant_key: merchantKey,
             connection_mode: PayazaCheckout.LIVE_CONNECTION_MODE,

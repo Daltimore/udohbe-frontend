@@ -24,8 +24,6 @@ interface Filter {
 }
 
 const Filters = ({ color, sort }: { color: string | string[] | undefined, sort: string | string[] | undefined }) => {
-    console.log(color, 'kepa')
-
     const searchParams = useSearchParams()
     const router = useRouter()
     const filters: Filter[] = [

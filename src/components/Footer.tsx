@@ -22,7 +22,7 @@ const Footer = () => {
                                 from all over the world.
                             </div>
                             <div className="mt-10">
-                                <a className=' uppercase text-sm  font-light' href="#">View shop</a>
+                                <a className=' uppercase text-sm  font-light' href="/all-candles">View shop</a>
                             </div>
                         </div>
                         <div>
@@ -32,7 +32,7 @@ const Footer = () => {
                                 pieces when our friend group visited  Costa Rica
                             </div>
                             <div className="mt-10">
-                                <a className=' uppercase text-sm  font-light' href="#">View about</a>
+                                <a className=' uppercase text-sm  font-light' href="/faq">View about</a>
                             </div>
                         </div>
                         <div>
@@ -42,7 +42,7 @@ const Footer = () => {
                                 behind the scenes of how we design every
                             </div>
                             <div className="mt-10">
-                                <a className=' uppercase text-sm  font-light' href="#">View Journal</a>
+                                <a className=' uppercase text-sm  font-light' href="/faq">View Journal</a>
                             </div>
                         </div>
                         <div className=' col-start-2 col-span-3 mt-[7rem] flex items-cente '>
@@ -53,10 +53,10 @@ const Footer = () => {
                         </div>
                         <div className="col-start-2  col-span-3 items-center grid justify-end w-full mt-16">
                             <div className="flex gap-8 text-sm font-light">
-                                <a href="">Tiktok</a>
-                                <a href="">Facebook</a>
-                                <a href="">Twitter</a>
-                                <a href="">Instagram</a>
+                                <a target='_blank' href="https://www.tiktok.com/@udohbe?_t=8nQrOEvAVm4&_r=1">Tiktok</a>
+                                <a target='_blank' href="https://www.youtube.com/@udohbe?si=KeSfakmFk-j7UhuT">Youtube</a>
+                                <a target='_blank' href="https://x.com/udohbe?s=21&t=C60MAF1sxH3P-jMzAQlMsw">Twitter</a>
+                                <a target='_blank' href="https://www.instagram.com/udohbe">Instagram</a>
                             </div>
                         </div>
                         <div className="col-start-2  col-span-3 items-center grid justify-end w-full mt-16">
@@ -67,8 +67,8 @@ const Footer = () => {
                                     <span className='text-[#636363]'>Powered by</span>
                                     <span className='ml-1 text-[#C2C1A5]'>Payaza </span>
                                 </a>
-                                <a className='text-[#636363]' href="">Contact</a>
-                                <a className='text-[#C2C1A5]' href="">Support</a>
+                                <a href="mailto:info@udohbe.com?subject=contact" className='text-[#636363]'>Contact</a>
+                                <a href="mailto:info@udohbe.com?subject=support" className='text-[#C2C1A5]'>Support</a>
                             </div>
                         </div>
 
@@ -79,7 +79,7 @@ const Footer = () => {
                 <div>
                     <div className=' flex justify-between items-center'>
                         <p className=' tracking-wider text-sm'>SHOP</p>
-                        <a className=' uppercase text-xs  font-light' href="#">View shop</a>
+                        <a className=' uppercase text-xs  font-light' href="/all-candles">View shop</a>
                     </div>
                     <div className=' text-xs text-background/60 w-[70%] h-[5rem]  mt-5  leading-5'>
                         Discover carefully refined clothing made in
@@ -90,7 +90,7 @@ const Footer = () => {
                 <div>
                     <div className=' flex justify-between items-center mt-6'>
                         <p className=' tracking-wider text-sm'>About</p>
-                        <a className=' uppercase text-xs  font-light' href="#">View About</a>
+                        <a className=' uppercase text-xs  font-light' href="/faq">View About</a>
                     </div>
                     <div className=' text-xs text-background/60 w-[70%] h-[5rem]  mt-5  leading-5'>
                         We got the idea to make the finest fashion
@@ -104,10 +104,10 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="flex py-16 gap-8 text-sm font-light">
-                    <a href="">Tiktok</a>
-                    <a href="">Facebook</a>
-                    <a href="">Twitter</a>
-                    <a href="">Instagram</a>
+                    <a target='_blank' href="https://www.tiktok.com/@udohbe?_t=8nQrOEvAVm4&_r=1">Tiktok</a>
+                    <a target='_blank' href="https://www.youtube.com/@udohbe?si=KeSfakmFk-j7UhuT">Youtube</a>
+                    <a target='_blank' href="https://x.com/udohbe?s=21&t=C60MAF1sxH3P-jMzAQlMsw">Twitter</a>
+                    <a target='_blank' href="https://www.instagram.com/udohbe">Instagram</a>
                 </div>
                 <div>
                     <div className=' flex items-center justify-between text-sm px-10 border-t border-[#FAF9F7] border-opacity-25 pt-6'>
@@ -115,8 +115,8 @@ const Footer = () => {
                             <span className='text-[#636363]'>Powered by</span>
                             <span className='ml-1 text-[#C2C1A5]'>Payaza </span>
                         </a>
-                        <a className='text-[#636363]' href="">Contact</a>
-                        <a className='text-[#C2C1A5]' href="">Support</a>
+                        <a href="mailto:info@udohbe.com?subject=contact" className='text-[#636363]'>Contact</a>
+                        <a href="mailto:info@udohbe.com?subject=support" className='text-[#C2C1A5]'>Support</a>
                     </div>
                     <div className="flex justify-center items-center mt-4">
                         <a href=""><span className=' text-[#636363] text-sm '>
