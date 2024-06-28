@@ -34,7 +34,7 @@ const FAQ = () => {
                                 United Kingdom: 1-3 Days <br />
 
                                 Rest of the world
-                                Express Shipping: 1 – 5 Working Days
+                                Express Shipping: 1 – 5 Working Days
                             </p>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ const FAQ = () => {
                             Pre-Order Items:
                         </h1>
                         <p className='mt-5 opacity-70 ml-5'>
-                            Items listed as 'PRE-ORDER' will commence processing on the specified date in the product description, which varies between items.
+                            Items listed as &apos;PRE-ORDER&apos; will commence processing on the specified date in the product description, which varies between items.
                         </p>
                     </div>
                     <div>
@@ -66,7 +66,7 @@ const FAQ = () => {
                             Dispatch Notification:
                         </h1>
                         <p className='mt-5 opacity-70 ml-5'>
-                            If you haven't received a dispatch or delivery notification within the stated processing time or dispatch date, kindly notify us via email at <a className=' text-blue-800' href="mailto:info@udohbe.com">
+                            If you haven&apos;t received a dispatch or delivery notification within the stated processing time or dispatch date, kindly notify us via email at <a className=' text-blue-800' href="mailto:info@udohbe.com">
                                 info@udohbe.com
                             </a>, ensuring to include your order number.
                         </p>
@@ -76,7 +76,7 @@ const FAQ = () => {
                             Item Not Received:
                         </h1>
                         <p className='mt-5 opacity-70 ml-5'>
-                            In case your order hasn't arrived within the estimated delivery time, please allow an additional 2 business days before contacting us, as packages may experience delays with the courier service. Once dispatched, it's the responsibility of the postal service to ensure timely delivery.
+                            In case your order hasn&apos;t arrived within the estimated delivery time, please allow an additional 2 business days before contacting us, as packages may experience delays with the courier service. Once dispatched, it's the responsibility of the postal service to ensure timely delivery.
                         </p>
                     </div>
                     <h1 className=' text-2xl mt-10  font-times'>
@@ -91,7 +91,7 @@ const FAQ = () => {
 
                             What can be returned? We do not accept returns.
 
-                            Here at Udohbé we take great pride in producing the highest quality of wax melts and candle products available. All of our products are carefully inspected before they are shipped. Due to the nature of the product, used candles and wax melts can not be returned. Slight variations from wax melt to wax melt or candle to candle are considered apart of the unique handcrafted process and are to be expected.
+                            Here at Udohbé we take great pride in producing the highest quality of wax melts and candle products available. All of our products are carefully inspected before they are shipped. Due to the nature of the product, used candles and wax melts can not be returned. Slight variations from wax melt to wax melt or candle to candle are considered apart of the unique handcrafted process and are to be expected.
 
                             If for any reason you are completely dissatisfied with your products, please contact us within 5 days of receiving your order to resolve.
                             Any unauthorized cancellations, refused orders or returns will be charged a 20% re-stocking fee plus all freight charges.
