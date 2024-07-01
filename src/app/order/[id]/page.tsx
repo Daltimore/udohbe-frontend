@@ -27,8 +27,8 @@ const page = async ({ params }: {
 
     return (
         <main>
-            <div className="lg:container  lg:flex justify-between px-4 lg:max-w-2xl items-center mt-10">
-                <div className="flex flex-col items-center justify-center">
+            <div className="lg:container  lg:flex justify-center px-4 lg:max-w-3xl  lg:mx-auto items-center mt-10">
+                <div className="flex flex-col items-center justify-center w-full">
                     <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd" d="M36.4792 0.5H13.5181C5.51654 0.5 0.5 6.16546 0.5 14.1829V35.8171C0.5 43.8345 5.4927 49.5 13.5181 49.5H36.4766C44.5047 49.5 49.5 43.8345 49.5 35.8171V14.1829C49.5 6.16546 44.5047 0.5 36.4792 0.5Z" fill="#5FDB89" />
                         <path d="M14.5 25L21.502 32L35.5 18" stroke="#F8F9FB" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
