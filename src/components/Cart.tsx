@@ -103,7 +103,7 @@ const Cart = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: React.Dispatc
                         <div className='px-4'>
                             <div className='flex pb-3 border-b items-center font-inria font-medium justify-between text-sm '>
                                 <p>Sub-total:</p>
-                                <p>     <Currency className='text-sm font-inria' value={calculateSubtotal().toLocaleString()} /></p>
+                                <div>     <Currency className='text-sm font-inria' value={calculateSubtotal().toLocaleString()} /></div>
                             </div>
                             <Link href='/cart'>
                                 <Button className='w-full bg-foreground text-background  rounded-none  font-inria mt-4 mb-2 h-[3rem]'>

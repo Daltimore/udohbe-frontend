@@ -9,7 +9,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Button } from '@/components/ui/button'
-import { getProduct } from '@/lib/api'
+import { createOrder, getProduct } from '@/lib/api'
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import {
     Card,
@@ -25,9 +25,15 @@ import { PayazaCheckoutOptionsInterface } from '@payaza/web-sdk/lib/PayazaChecko
 import { useStore } from 'zustand'
 import { useCartStore } from '@/store/cart'
 import { convertCurrency } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
+
 
 const Cart = () => {
     const total = useStore(useCartStore, (state) => state.total)
+    const cart = useStore(useCartStore, (state) => state.cart)
+    const clearCart = useStore(useCartStore, (state) => state.clearCart)
+    const router = useRouter()
+
     const [shipping, setShipping] = useState('1')
     const [data, setData] = useState({
         first_name: '',
@@ -46,12 +52,38 @@ const Cart = () => {
         setShipping(value)
     }
 
+    const makeOrder = async () => {
+        const formatCart = cart.map((item) => {
+            return {
+                quantity: item.quantity,
+                product: {
+                    id: item.product.id,
+                    attributes: {
+                        name: item.product.attributes.name,
+                        price: item.product.attributes.amount
+                    }
+                }
+            }
+        })
+        let payload = {
+            customer_name: data.first_name + ' ' + data.last_name,
+            customer_email: data.email,
+            address: `${data.address}, ${data.city}, ${data.country}, ${data.post_code}`,
+            phone_number: data.phone,
+            items: formatCart,
+        }
+        const response = await createOrder(payload)
+        clearCart()
+        router.push(`order/${response.data.id}`)
+    }
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const convertAmount = await convertCurrency(total.toLocaleString(), true)
         const fixedAmount = convertAmount.toFixed(2)
 
-        const resonse: PayazaCheckoutOptionsInterface = {
+
+        const response: PayazaCheckoutOptionsInterface = {
             merchant_key: merchantKey,
             connection_mode: PayazaCheckout.LIVE_CONNECTION_MODE,
             checkout_amount: 5,
@@ -61,14 +93,13 @@ const Cart = () => {
             last_name: data.last_name,
             phone_number: data.phone,
             transaction_reference: `${data.first_name}-${data.last_name}-${data.email}-${fixedAmount}-${new Date().getTime()}`,
-            onClose: function () {
-                console.log("Closed")
+            onClose: function async() {
             },
-            callback: function (callbackResponse) {
-                console.log(callbackResponse)
+            callback: async function (callback) {
+                await makeOrder()
             }
         }
-        const checkout = new PayazaCheckout(resonse)
+        const checkout = new PayazaCheckout(response)
         checkout.showPopup()
 
     }

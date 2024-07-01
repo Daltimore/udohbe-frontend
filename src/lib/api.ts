@@ -30,6 +30,22 @@ export type Product = {
   };
 };
 
+export type Order = {
+  customer_name: string;
+  customer_email: string;
+  address: string;
+  items: Array<{
+    product: {
+      id: number;
+      attributes: {
+        name: string;
+        price: number;
+      };
+    };
+    quantity: number;
+  }>;
+};
+
 type ApiResponse = {
   data: Product[];
   meta: {
@@ -95,6 +111,22 @@ export const getProductById = async (
 ): Promise<SingleProductResponse> => {
   const response = await instance.get<SingleProductResponse>(
     `/api/products/${id}`
+  );
+  return response.data;
+};
+
+export const createOrder = async (payload: Order): Promise<any> => {
+  const response = await instance.post("/api/orders", {
+    data: {
+      ...payload,
+    },
+  });
+  return response.data;
+};
+
+export const getOrder = async (id: string): Promise<any> => {
+  const response = await instance.get(
+    `/api/orders/${id}?populate[items][populate]=*`
   );
   return response.data;
 };

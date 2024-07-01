@@ -36,6 +36,7 @@ interface CartStore {
   removeFromCart: (productId: number) => void;
   updateCartItemQuantity: (productId: number, newQuantity: number) => void;
   updateTotal: (total: number) => void;
+  clearCart: () => void;
 }
 
 export const useCartStore = create(
@@ -82,6 +83,7 @@ export const useCartStore = create(
           ),
         })),
       updateTotal: (total) => set({ total }),
+      clearCart: () => set({ cart: [], total: 0 }),
     }),
     {
       name: "cart",

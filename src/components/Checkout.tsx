@@ -22,6 +22,7 @@ const Checkout = ({ shipping, children }: { shipping: string, children: React.Re
         }
     };
 
+
     const calculateSubtotal = () => {
         return cartStore.reduce((total, item) => {
             return total + (item.product.attributes.amount * item.quantity);
