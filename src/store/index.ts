@@ -3,6 +3,7 @@ import { create } from "zustand";
 export enum currencyEnum {
   Pounds = "gbp",
   Naira = "ngn",
+  Dollars = "usd",
 }
 
 interface CurrencyState {

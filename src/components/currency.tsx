@@ -12,25 +12,29 @@ const Currency = ({ value, className }: { value: string, className?: string }) =
 
     useEffect(() => {
         const fetchExchangeRate = async () => {
-            if (currency === currencyEnum.Naira) {
-                try {
-                    const response = await axios.get(`https://v6.exchangerate-api.com/v6/${api}/pair/GBP/NGN`)
-                    const rate = response.data.conversion_rate
-                    const converted = parseFloat(value) * rate
+            try {
+                let rate = 1;
+                let currencyCode = 'GBP';
 
-                    setConvertedValue(new Intl.NumberFormat('en-NG', {
-                        style: 'currency',
-                        currency: 'NGN'
-                    }).format(converted))
-
-                } catch (error) {
-                    console.error('Error fetching exchange rate:', error)
-                    setConvertedValue(new Intl.NumberFormat('en-GB', {
-                        style: 'currency',
-                        currency: 'GBP'
-                    }).format(parseFloat(value)))
+                if (currency !== currencyEnum.Pounds) {
+                    const response = await axios.get(`https://v6.exchangerate-api.com/v6/${api}/pair/GBP/${currency.toUpperCase()}`)
+                    rate = response.data.conversion_rate
+                    currencyCode = currency.toUpperCase()
                 }
-            } else {
+
+                const converted = parseFloat(value) * rate
+
+                setConvertedValue(new Intl.NumberFormat(
+                    currency === currencyEnum.Naira ? 'en-NG' :
+                        currency === currencyEnum.Dollars ? 'en-US' : 'en-GB',
+                    {
+                        style: 'currency',
+                        currency: currencyCode
+                    }
+                ).format(converted))
+
+            } catch (error) {
+                console.error('Error fetching exchange rate:', error)
                 setConvertedValue(new Intl.NumberFormat('en-GB', {
                     style: 'currency',
                     currency: 'GBP'
