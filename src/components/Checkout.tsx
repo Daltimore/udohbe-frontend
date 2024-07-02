@@ -15,8 +15,9 @@ const Checkout = ({ shipping, children }: { shipping: string, children: React.Re
     const updateCartItemQuantity = useStore(useCartStore, (state) => state.updateCartItemQuantity)
     const removeFromCart = useStore(useCartStore, (state) => state.removeFromCart)
 
-    const handleQuantityChange = (productId: number, newQuantity: number) => {
-        if (!isNaN(newQuantity) && newQuantity >= 0) {
+
+    const handleQuantityChange = (productId: number, newQuantity: number, maxQuantity: number) => {
+        if (newQuantity >= 1 && newQuantity <= maxQuantity) {
             if (updateCartItemQuantity)
                 updateCartItemQuantity(productId, newQuantity);
         }
@@ -75,19 +76,32 @@ const Checkout = ({ shipping, children }: { shipping: string, children: React.Re
                                         <div className="flex justify-between items-center w-full ">
                                             <div className='font-inria text-sm flex items-center gap-x-3'>
                                                 Qty:
-                                                <input
-                                                    type="number"
-                                                    className='border border-[#D9D9D9] w-10 h-7 text-center outline-none'
-
-                                                    value={quantity}
-                                                    min={1}
-                                                    max={product?.attributes?.quantity}
-
-                                                    onChange={(e) => {
-                                                        const newQuantity = Math.max(1, Math.min(parseInt(e.target.value) || 0, product?.attributes?.quantity));
-                                                        handleQuantityChange(product.id, newQuantity);
-                                                    }}
-                                                />
+                                                <div className="flex items-center">
+                                                    <button
+                                                        type='button'
+                                                        className={`px-2 py-1 border border-[#D9D9D9] ${quantity === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            handleQuantityChange(product.id, Math.max(1, quantity - 1), product.attributes.quantity);
+                                                        }}
+                                                        disabled={quantity === 1}
+                                                    >
+                                                        -
+                                                    </button>
+                                                    <span className="px-3 py-1 border-t border-b border-[#D9D9D9]">
+                                                        {quantity}
+                                                    </span>
+                                                    <button
+                                                        type='button'
+                                                        className="px-2 py-1 border border-[#D9D9D9]"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            handleQuantityChange(product.id, Math.min(quantity + 1, product?.attributes?.quantity), product.attributes.quantity);
+                                                        }}
+                                                    >
+                                                        +
+                                                    </button>
+                                                </div>
                                                 <span onClick={() => removeFromCart(product.id)} className='text-red-500 cursor-pointer'>
                                                     Remove
                                                 </span>
